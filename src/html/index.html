@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="d-flex flex-column align-items-center mt-5 justify-content-center">
+    <div class="p-2 m-2">
+      <h1>Jobphin Movie Rating App</h1>
+    </div>
+
+    <div class="p-2 m-2" id="auth-container">
+        <form action="/api/register" method="post" id="auth-form">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+            <div class="form-text" id="username-info"></div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password">
+            <div id="password-info" class="form-text"></div>
+          </div>
+          <div class="mb-3 d-flex justify-content-between">
+            <button id="register-btn"r type="submit" class="btn btn-primary">Register</button>
+            <button id="login-btn" type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+    </div>
+  
+    <div class="p-2 m-2" id="data-container">
+      dta here
+    </div>
+
+  </div> 
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <script>
+    // show elements based on auth status
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (!jwtToken) {
+      $("#data-container").hide();
+      $("#auth-container").show();
+    } else {
+      $("#data-container").show();
+      $("#auth-container").hide();
+    }
+
+    // preventDefault for auth buttons
+    async function register(username, password) {
+      const res = await fetch('/auth/register')
+    }
+
+    async function login(username, password) {
+
+    }
+
+    $("#login-btn").onclick(function(event) { 
+      event.preventDefault(); 
+      login($("#email").val(), $("#password").val());
+    });
+    $("#reigster-btn").onclick(function(event) { 
+      event.preventDefault();
+      register($("#email").val(), $("#password").val());
+     });
+  </script>
+</body>
+
+</html>
