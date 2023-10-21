@@ -7,7 +7,7 @@
 3. start on local port 8080 - `npm run dev`
 
 ### Testing via postman
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2189281-822dbade-a6a3-41fe-b04f-55180f19a292?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D2189281-822dbade-a6a3-41fe-b04f-55180f19a292%26entityType%3Dcollection%26workspaceId%3D0f941ae8-bd83-4cbe-9e00-4df5d37b272f)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2189281-97e01b64-a857-4764-8790-75c8f149a9b2?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D2189281-97e01b64-a857-4764-8790-75c8f149a9b2%26entityType%3Dcollection%26workspaceId%3D0f941ae8-bd83-4cbe-9e00-4df5d37b272f)
 
 ### Run local UI
 Head on to `http://localhost:8080` and try it out.
