@@ -31,6 +31,38 @@ export interface IJwtPayload {
   userId: number
 }
 
+export interface IAddMovieRequest {
+  movieName: string
+  rating: number
+  cast: string[]
+  genre: string
+  releaseDate: string
+}
+
+export interface IAddMovieResponse {
+  movieId: number
+}
+
+export interface IDeleteMovieRequest {
+  movieId: number
+}
+
+export interface IMovie {
+  name: string
+  rating: number
+  cast: string[]
+  genre: string
+  releaseDate: string
+}
+
+export interface IMovieListResponse {
+  movies: IMovie[]
+}
+
+export interface IErrorResponse {
+  error: string
+}
+
 export interface TypedRequest<T extends Query, U> extends Express.Request {
   body: U
   query: T
