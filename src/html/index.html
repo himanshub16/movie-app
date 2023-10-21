@@ -15,7 +15,7 @@
     <div class="col-6">
       <div class="d-flex flex-column align-items-center mt-5 justify-content-center">
         <div class="p-2 m-2">
-          <h1>Jobphin Movie Rating App</h1>
+          <h1>Movie Rating App</h1>
         </div>
 
         <hr>
@@ -24,7 +24,7 @@
           <div class="d-flex flex-row justify-content-end">
 
             <div class="p-2">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-movie-modal">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-movie-modal" id="add-movie-modal-btn">
                 Add your movie
               </button>
             </div>
@@ -139,6 +139,8 @@
     if (!jwtToken) {
       $("#data-container").hide();
       $("#auth-container").show();
+      $("#add-movie-modal-btn").hide();
+      $("#logout-btn").hide();
     } else {
       $("#data-container").show();
       $("#auth-container").hide();
@@ -169,8 +171,22 @@
     })
 
     // preventDefault for auth buttons
-    async function register(username, password) {
-      const res = await fetch('/auth/register')
+    async function register(email, password) {
+      const res = await fetch('/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: {
+          'Content-Type': "application/json"
+        }
+      })
+
+      const ok = res.ok;
+      const data = await res.json()
+      if (!ok)  {
+        alert(data.error)
+      } else {
+        window.location.reload()
+      }
     }
 
     async function login(email, password) {
