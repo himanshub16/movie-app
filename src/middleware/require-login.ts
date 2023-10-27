@@ -1,5 +1,5 @@
 import { type RequestHandler } from 'express'
-import { getUserByIdOrNull } from '@/db'
+import { getUserByIdOrNull } from '@/models/user'
 import { type AuthorizedRequest, type IJwtPayload } from '@/types'
 import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'

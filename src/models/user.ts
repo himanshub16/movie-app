@@ -1,42 +1,13 @@
+import bcrypt from 'bcrypt'
 import { PrismaClient } from '@prisma/client'
 
-import bcrypt from 'bcrypt'
-
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 
 export interface IUser {
   email: string
   id: number
 }
 
-export const createMovie = async (
-  { movieName, rating, cast, genre, releaseDate, createdById }: { movieName: string, rating: number, cast: string[], genre: string, releaseDate: Date, createdById: number }) => {
-  console.log('--------')
-  console.log(movieName, rating, cast, genre, releaseDate, createdById, 'data here')
-  const movie = await prisma.movie.create({
-    data: {
-      name: movieName,
-      rating,
-      cast,
-      genre,
-      releaseDate,
-      createdById
-    }
-  })
-
-  return {
-    movieId: movie.id
-  }
-}
-
-export const getMoviesForUser = async (createdById: number) => {
-  const movies = await prisma.movie.findMany({
-    where: {
-      createdById
-    }
-  })
-  return movies
-}
 
 export const getUserOrNull = async (email: string): Promise<IUser | null> => {
   const user = await prisma.user.findUnique({
@@ -99,13 +70,11 @@ export const authenticate = async (email: string, password: string) => {
     }
   }
 }
-
 const hashPassword = (plainText: string): string => {
   const saltRounds = 10
   const salt = bcrypt.genSaltSync(saltRounds)
   return bcrypt.hashSync(plainText, salt)
 }
-
 const validatePassword = (givenPassword: string, encryptedPassword: string): boolean => {
   return bcrypt.compareSync(givenPassword, encryptedPassword)
 }
