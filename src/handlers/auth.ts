@@ -47,6 +47,6 @@ export const validateJwtToken = (req: AuthorizedRequest<IAuthVerifyReq>, res: Ty
   })
 }
 
-export function generateJwtToken (payload: IJwtPayload): string | undefined {
+function generateJwtToken (payload: IJwtPayload): string | undefined {
   return jwt.sign(payload, process.env.JWT_SECRET_KEY as string)
 }
